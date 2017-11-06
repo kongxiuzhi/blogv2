@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+    article list
+{% endblock  %}
+
+{% block content %}
+
+    <h1>Article</h1>
+    <p>{{ request.user.username }}</p>
+    <h1>{{ now|date:"h : i : s"}}</h1>
+    <ul>
+        {% for article in object_list %}
+            <li>{{ article.created|date }} - {{ article.title }}</li>
+            <a href="{{article.get_absolute_url}}">more</a>
+        {% empty %}
+            <li>No article yet.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'logout' %}">logout</a>
+    <a href="{% url 'password_change' %}">change password</a>
+{% endblock %}

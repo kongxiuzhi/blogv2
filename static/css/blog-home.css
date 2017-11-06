@@ -1,0 +1,91 @@
+/*!
+ * Start Bootstrap - Blog Home (http://startbootstrap.com/template-overviews/blog-home)
+ * Copyright 2013-2017 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-blog-home/blob/master/LICENSE)
+ */
+
+body {
+    padding-top: 54px;
+}
+
+
+.avatar {
+    height: 40px;
+    width: 40px;
+    border-radius: 50px;
+}
+
+.bigavatar {
+    height: 160px;
+    width: 160px;
+    border-radius: 50%;
+    float: left;
+}
+
+.info {
+    margin-right: auto;
+    padding-left: 200px;
+    font-size: 20px;
+    font-weight: 700;
+    display: block;
+}
+
+.userprifile {
+    background-color: #ccc;
+    margin-left:3px;
+    margin-right: 3px;
+    padding-left:2px;
+    padding-right:2px; 
+    border:solid 1px #ccc;
+    color: #fff;
+    border-radius: 3px;
+}
+
+
+.icon{
+    height: 26px;
+    width: auto;
+    border: solid 1px #ffe;
+    padding-right: 3px;
+}
+
+.iconview{
+    height: 20px;
+    width: auto;
+    border: solid 1px #ffe;
+    padding-right: 3px;
+}
+
+.commentCss{
+    border:solid 1px #ccc;
+    border-radius: 3px;
+    height: 80px;
+    width: 80%;
+    padding: 2px;
+    overflow: auto;
+}
+
+#commentForm{
+    border:solid 1px #ffe;
+    border-radius: 3px;
+    margin: 2px;
+    padding: 2px;
+}
+
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin:auto;
+}
+
+.info_content  td,th {
+
+    padding:0 15px;
+    text-align: center;
+}
+
+@media (min-width: 992px) {
+    body {
+        padding-top: 56px;
+    }
+}

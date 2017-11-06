@@ -1,0 +1,11 @@
+1.@login_required没有跳转
+    原因：settings.py LOGIN_URL写成了LOGIN_RUl
+2.LISTVIEW 分页is_pagnited=false
+    原因：设置了paginate_orphans=2，不够分成两页
+3.表单重复提交
+    方法：redirect
+4.django-ckeditor在template中表单不显示
+    {{form.media{% csrf_token %}
+    {{ article_form.media }}
+    {{ article_form.content }}}}
+5.全局templates

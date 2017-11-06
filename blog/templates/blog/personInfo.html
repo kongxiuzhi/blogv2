@@ -1,0 +1,67 @@
+{% extends "blogbase.html" %}
+{% load staticfiles %}
+{% load blog_tags %}
+
+{% block title %}
+    个人信息
+{% endblock %}
+
+{% block content %}
+    <div>
+        <img src="{{ profile.avatar.url }}" class="bigavatar">
+        <div class="info">
+            <table>
+                <tr>
+                    <td>姓名:</td>
+                    <td>{{user.username}}</td>
+                </tr>
+                <tr>
+                    <td>性别:</td>
+                    <td>{{profile.sex}}</td>
+                </tr>
+                <tr>
+                    <td>邮箱:</td>
+                    <td>{{user.email}}</td>
+                </tr>
+                <tr>
+                    <td>电话:</td>
+                    <td>xxxxxxx{{profile.phone|mycut}}</td>
+                </tr>
+                {% if flag %}
+                <tr>
+                    <td colspan="2"><a href="{% url "person_info_edit"  %}">编辑个人信息</a></td> 
+                </tr>  
+                {% endif %}
+            </table>
+        </div>
+    </div>
+    <hr>
+    <div class="info_content" style="padding-top: 10px;clear: both;">
+        <hr>
+        <table frame="hsides">
+                <tr>
+                    <th>标题</th>
+                    <th>作者</th>
+                    <th>创作时间</th>
+                    <th>最新更新</th>
+                    {% if flag %}
+                    <th>编辑</th>
+                    {% endif %}
+                </tr>
+        {% for article in articles %}
+                <tr>
+                    
+                    <td><a href="{% url "article_detail" article.pk %}">{{article.title}}</a></td> 
+                    <td>{{article.author}}</td>     
+                    <td>{{article.created|date:"Y/m/d H:i:s"}}</td>
+                    <td>{{article.updated|date:"Y/m/d H:i:s"}}</td> 
+                    {% if flag %}
+                    <td><a href="{% url "article_edit" article.pk %}">编辑</a></td>   
+                    {% endif %}
+                </tr>      
+        {% empty %}
+            nothing
+        {% endfor %}
+        </table>
+    </div>
+{%endblock%}

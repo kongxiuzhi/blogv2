@@ -1,0 +1,29 @@
+{% extends "blogbase.html" %}
+{% load staticfiles %}
+
+{% block title %}
+    编辑个人信息
+{% endblock %}
+
+
+{% block content %}
+
+<form method="post" action=".">
+    <table style="margin: 10px;">
+        <tr>
+            <td>标题:</td>
+            <td>{{ article_form.title }}</td>
+            <td>分类:</td>
+            <td>{{ article_form.tags }}</td>
+            <td>发表</td>
+            <td><span style="margin-right:auto"></span>{{ article_form.draft }}</td>
+            <button type="submit" class="btn btn-primary" style="float: right;">提交</button>
+        </tr>
+    </table>
+                {% csrf_token %}
+                {{ article_form.media }}
+                {{ article_form.content }}
+    
+</form>
+
+{%endblock%}

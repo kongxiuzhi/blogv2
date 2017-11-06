@@ -1,0 +1,76 @@
+{% extends "blogbase.html" %}
+{% load staticfiles %}
+
+{% block title %}
+    文章详情
+{% endblock  %}
+
+
+{% block content %}
+    <h1 class="mt-4">{{ object.title }}</h1>
+          <hr>
+          <p><img class="avatar" src="{{ object.author.profile.avatar.url }}" />
+            <a href="{{object.author.profile.get_info_url }}" id ="au{{object.author.id}}"><strong>{{ object.author }}</strong></a> 发表于 {{object.updated|date:"Y/m/d H:i:s"}}</p>
+          <hr>
+          <p>
+            {% autoescape off %}
+            <p>{{ object.content}}</p>
+            {% endautoescape %}
+          </p>
+          <p>
+            <img src="{% static "images/icon/view.png" %}" class="iconview"><span>{{object.view}} 
+            <span>
+                <a href="#" class="like" id="likeid" data-id="{{ article.id }}" data-action="like"> 
+                    <img src="{% static "images/icon/zan.png" %}" class="icon">
+                </a>
+                <span id="likeNum"> 
+                    {{object.click}}
+                </span>
+            </span>
+            <span><img src="{% static "images/icon/comments.png" %}" class="iconview"> {{object.comments.count}}</span>
+          </p>
+        <hr>
+        <form method="post" action="{% url "article_comment" object.pk %}" id="commentForm">
+                {% csrf_token %}
+                {{ forms.media }}
+                {{ forms.as_p }}
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <hr>
+        <div>
+            {% for comment in comments %}
+            <img class="avatar" src="{{ object.author.profile.avatar.url }}" />
+            <a href="#"><strong>{{ object.author }}</strong></a> 发表于 {{object.updated|date:"Y/m/d"}}
+            <div class="commentCss mb-4">
+                <div class="media-body">
+                {{comment.content|safe}}
+                </div>
+            </div>
+            {% empty %}
+                还没有人发表任何评论
+            {% endfor %}
+        </div>
+{% endblock %}
+
+{% block cusjs %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".like").click(function(e){
+                e.preventDefault();
+                $.post('{% url "like" %}',
+                        {
+                            id:$(this).data('id'),
+                            //action:$(this).data('action'),
+                        },
+                        function(data){
+                            if(data['status']=='ok'){
+                                //var preaction = $("#likeid").data('action');
+                                //$("#likeid").data('action',preaction == 'like'?'unlike':'like');
+                                $("#likeNum").text( data['likeNum']);
+                            }
+                        }
+                    );
+            });
+        })
+    </script>
+{% endblock %}

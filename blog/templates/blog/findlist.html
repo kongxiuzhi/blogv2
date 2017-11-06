@@ -1,0 +1,45 @@
+{% extends "blogbase.html" %}
+{% load staticfiles %}
+
+{% block title %}
+    查询结果
+{% endblock %}
+
+{% block content %}
+          <h1 class="my-4">
+            查询结果
+          </h1>
+          {% for article in object_list %}
+          <!-- Blog Post -->
+          <div class="card mb-4">
+            <!--img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap"-->
+            <div class="card-body">
+              <h2 class="card-title">{{ article.title}}</h2>
+              <p>Posted on {{ article.updated|date:"Y/m/d" }}</p>
+              <p class="card-text">{{ article.content|truncatechars:300|linebreaks }}</p>
+              <a href="{{ article.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
+            </div>
+            <div class="card-footer text-muted">
+            <p>
+              <img src="{% static "images/icon/view.png" %}" class="iconview"><span>{{article.view}} 
+              <img src="{% static "images/icon/zan.png" %}" class="icon"> {{article.click}}</span>
+            </p>
+            </div>
+          </div>
+          {% empty %}
+            没有找到，请更换关键词重式
+          {% endfor %}
+
+          <ul class="pagination justify-content-center mb-4">
+            {% if object_list.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ object_list.previous_page_number }}">&larr; 上一页</a>
+            </li>
+            {% endif %}
+            {% if object_list.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ object_list.next_page_number }}">下一页 &rarr;</a>
+            </li>
+            {% endif %}
+          </ul>
+{% endblock %}
