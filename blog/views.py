@@ -69,7 +69,7 @@ class ArticleListView(ListView):
         context['now'] = timezone.now()
         return context
     def get_queryset(self):
-        return super(ArticleListView,self).get_queryset().filter(publish=True)
+        return super(ArticleListView,self).get_queryset().filter(publish=True,draft=True)
         
 
 

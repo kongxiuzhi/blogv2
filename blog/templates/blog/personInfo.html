@@ -43,6 +43,7 @@
                     <th>标题</th>
                     <th>创作时间</th>
                     <th>最新更新</th>
+                    <th>文章状态</th>
                     {% if flag %}
                     <th>编辑</th>
                     {% endif %}
@@ -52,7 +53,12 @@
                     
                     <td style="text-align: left;"><a href="{% url "article_detail" article.pk %}">{{article.title|truncatechars:15}}</a></td>
                     <td>{{article.created|date:"Y/m/d"}}</td>
-                    <td>{{article.updated|date:"Y/m/d H:i:s"}}</td> 
+                    <td>{{article.updated|date:"Y/m/d H:i:s"}}</td>
+                    {% if article.draft %}
+                    <td>已发表</td>
+                    {% else %}
+                    <td>未发表</td>
+                    {% endif %}
                     {% if flag %}
                     <td><a href="{% url "article_edit" article.pk %}">编辑</a></td>   
                     {% endif %}

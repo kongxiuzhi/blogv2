@@ -39,8 +39,8 @@
         <hr>
         <div>
             {% for comment in comments %}
-            <img class="avatar" src="{{ object.author.profile.avatar.url }}" />
-            <a href="#"><strong>{{ object.author }}</strong></a> 发表于 {{object.updated|date:"Y/m/d"}}
+            <img class="avatar" src="{{ comment.author.profile.avatar.url }}" />
+            <a href="{{comment.author.profile.get_info_url }}"><strong>{{ comment.author }}</strong></a> 发表于 {{comment.updated|date:"Y/m/d"}}
             <div class="commentCss mb-4">
                 <div class="media-body">
                 {{comment.content|safe}}
