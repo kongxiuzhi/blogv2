@@ -193,7 +193,7 @@ def personInfoView(request,pk):
         articles = user.articles.all()
         flag = True
     else:
-        articles = user.articles.getPublished.all()
+        articles = user.articles.filter(publish=True,draft=True)
     return render(request,'blog/personInfo.html',{"user":user,
                                                   "profile":user.profile,
                                                   "articles":articles,
