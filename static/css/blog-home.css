@@ -84,6 +84,21 @@ body {
     text-align: center;
 }
 
+.listcontent{
+    display: block;
+    height: 100px;
+    width: auto;
+    overflow: auto;
+}
+
+.title{
+    margin: -7px 0 4px;
+    display: inherit;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
 @media (min-width: 992px) {
     body {
         padding-top: 56px;

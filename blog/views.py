@@ -10,7 +10,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.utils import timezone
 from django.contrib.auth.models import User
 
-from .models import Article
+from .models import Article,Profile
 from .forms import CommentForm,UserRegistrationForm,ArticleForm,UserEditForm, ProfileEditForm
 
 from taggit.models import Tag
@@ -138,8 +138,12 @@ def articleCreateView(request):
             new_article = article_form.save(commit=False)
             new_article.author = request.user 
             new_article.save()
-            new_article.save_m2m()
-            return HttpResponseRedirect(reverse('article_edit',args=[pk]))
+            tags = article_form.cleaned_data['tags']
+            for tag in tags:
+                obj,created=Tag.objects.get_or_create(name=tag)
+                new_article.tags.add(obj)
+            
+            return HttpResponseRedirect(reverse('article_detail',args=[new_article.pk]))
     else:
         article_form = ArticleForm()
     return render(request,'blog/articlecreate.html',{'article_form':article_form})
@@ -150,8 +154,12 @@ def articleEditView(request,pk):
     if request.method == "POST":
         article_form = ArticleForm(instance=article,data=request.POST)
         if article_form.is_valid():
-            article_form.save()
-            return HttpResponseRedirect(reverse('article_edit',args=[pk]))
+            aticle = article_form.save()
+            tags = article_form.cleaned_data['tags']
+            for tag in tags:
+                obj,created=Tag.objects.get_or_create(name=tag)
+                article.tags.add(obj)
+            return HttpResponseRedirect(reverse('article_detail',args=[pk]))
     else:
         article_form = ArticleForm(instance=article)
     return render(request,'blog/articleEdit.html',{'article_form':article_form})
@@ -193,7 +201,7 @@ def personInfoView(request,pk):
         articles = user.articles.all()
         flag = True
     else:
-        articles = user.articles.getPublished.all()
+        articles = user.articles.filter(publish=True,draft=True)
     return render(request,'blog/personInfo.html',{"user":user,
                                                   "profile":user.profile,
                                                   "articles":articles,

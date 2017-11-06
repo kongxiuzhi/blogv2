@@ -47,8 +47,9 @@ class Article(models.Model):
     folower   = models.ManyToManyField(settings.AUTH_USER_MODEL,blank=True,related_name="likearticles")
     tags      = TaggableManager()
 
-    getPublished = ArticlePulished()
     objects = models.Manager()
+    getPublished = ArticlePulished()
+
 
     def __str__(self):
         

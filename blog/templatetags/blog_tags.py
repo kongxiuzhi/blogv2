@@ -4,4 +4,7 @@ register = template.Library()
 
 @register.filter
 def mycut(value,arg=4):
-    return value[-arg:]
+    if value:
+        return value[-arg:]
+    else:
+        return 0

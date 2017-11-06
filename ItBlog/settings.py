@@ -24,6 +24,9 @@ SECRET_KEY = 'r-l%b@k2kmmad4_v7i2xg(fr59cpafa96quul2lkgk66*qvnf$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+#DEBUG = False
+
+
 
 ALLOWED_HOSTS = ["*"]
 
@@ -84,7 +87,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME':'itblogdb',
         'USER':'itbloguser',
-        'PASSWORD':'your_database_password',
+        'PASSWORD':'aaddss1.123',
         'HOST':'127.0.0.1',
         'PORT':'3306',
         'OPTIONS':{
@@ -221,11 +224,10 @@ CKEDITOR_CONFIGS = {
 
     'article_ckeditor':{
         'skin': 'moono',
-        'toolbar':(['Preview', 'Print','Source'],
+        'toolbar':(['Preview', 'Print','Source','Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe'],
                    ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'],
-                   ['Style','Format','Font','FontSize'],
-                   ['SpecialChar','Link','Unlink','Anchor'],
-                   ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe'],
+                   ['Style','Format','Font','FontSize','-','JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',],
+                   ['SpecialChar','Link','Unlink','Anchor','ImageButton'],
                    ),
         'height':700,
         'width':'100%',
@@ -249,9 +251,9 @@ EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = False
 EMAIL_HOST = 'smtp.163.com'
 EMAIL_PORT = 25
-EMAIL_HOST_USER = 'youremail@163.com'
-EMAIL_HOST_PASSWORD = 'your_smtp_password'
-DEFAULT_FROM_EMAIL = 'youremail@163.com'
+EMAIL_HOST_USER = 'xiuzhikong@163.com'
+EMAIL_HOST_PASSWORD = '163smtp'
+DEFAULT_FROM_EMAIL = 'xiuzhikong@163.com'
 
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
