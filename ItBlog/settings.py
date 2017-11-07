@@ -87,7 +87,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME':'itblogdb',
         'USER':'itbloguser',
-        'PASSWORD':'youdbpassword',
+        'PASSWORD':'aaddss1.123',
         'HOST':'127.0.0.1',
         'PORT':'3306',
         'OPTIONS':{
@@ -251,9 +251,9 @@ EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = False
 EMAIL_HOST = 'smtp.163.com'
 EMAIL_PORT = 25
-EMAIL_HOST_USER = 'yourmailaddr@163.com'
-EMAIL_HOST_PASSWORD = 'emailsmtpserverpassword'
-DEFAULT_FROM_EMAIL = 'yourmailaddr@163.com'
+EMAIL_HOST_USER = 'kongxiuzhi@163.com'
+EMAIL_HOST_PASSWORD = '163smtp'
+DEFAULT_FROM_EMAIL = 'kongxiuzhi@163.com'
 
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
