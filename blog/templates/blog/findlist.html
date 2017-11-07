@@ -16,7 +16,7 @@
             <div class="card-body">
               <h2 class="card-title">{{ article.title}}</h2>
               <p>Posted on {{ article.updated|date:"Y/m/d" }}</p>
-              <p class="card-text">{{ article.content|truncatechars:300|linebreaks }}</p>
+              <p class="card-text">{{ article.content|truncatechars_html:150|striptags|safe }}</p>
               <a href="{{ article.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
             </div>
             <div class="card-footer text-muted">

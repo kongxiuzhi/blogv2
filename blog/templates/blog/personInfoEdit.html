@@ -14,7 +14,11 @@
             <td>{{user_form.username}}</td>
         </tr>
         <tr>
-            <td>邮箱:</td>
+            <td>密码:</td>
+            <td><a href="{% url "password_change" %}">更改密码</a></td>
+        </tr>
+        <tr>
+            <td>email:</td>
             <td>{{user_form.email}}</td>
         </tr>
         <tr>
@@ -35,3 +39,15 @@
 </form>
 
 {%endblock%}
+
+
+
+{% block cusjs %}
+
+<script type="text/javascript">
+    $(function(){
+        $("#id_email").attr("readonly","readonly");
+    })
+</script>
+
+{% endblock %}
